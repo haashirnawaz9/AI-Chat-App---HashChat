@@ -1,5 +1,6 @@
 "use client";
 import { Button } from '@/components/ui/button';
+import Footer from '@/components/ui/footer';
 import { Input } from '@/components/ui/input';
 import { useState, useRef, useEffect, KeyboardEvent } from 'react';
 
@@ -78,7 +79,7 @@ function Chatbot() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen">
       <main className="flex-grow overflow-y-auto p-4 max-w-6xl mx-auto">
         {messages.map((message, index) => (
           <div
@@ -95,7 +96,7 @@ function Chatbot() {
       </main>
 
       <div className="bg-white border-t border-gray-200">
-        <div className="flex items-center p-4 max-w-4xl mx-auto">
+        <div className="flex items-center p-4 max-w-4xl mx-auto mb-20">
           <Input
             type="text"
             value={message}

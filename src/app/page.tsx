@@ -29,7 +29,7 @@ export default function Home() {
           <div className="relative w-full max-w-4xl mx-auto">
             <Image 
               alt="App screenshot"
-              src="/HashBot.jpeg"
+              src="/HashBott.jpeg"
               layout="responsive"
               width={1200}
               height={800} 
