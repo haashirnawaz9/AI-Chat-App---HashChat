@@ -1,15 +1,21 @@
-"use client"
+"use client";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, KeyboardEvent } from 'react';
+
+// Define types for message structure
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+}
 
 function Chatbot() {
-  const messagesEndRef = useRef(null);
-  const [messages, setMessages] = useState([
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'Hi I am HashBot, how can I help you today?' },
   ]);
-  const [message, setMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const sendMessage = async () => {
     if (!message.trim() || isLoading) return;
@@ -32,11 +38,11 @@ function Chatbot() {
         throw new Error('Network response was not ok');
       }
 
-      const reader = response.body.getReader();
+      const reader = response.body?.getReader();
       const decoder = new TextDecoder();
 
       while (true) {
-        const { done, value } = await reader.read();
+        const { done, value } = await reader?.read() || { done: true, value: new Uint8Array() };
         if (done) break;
         const text = decoder.decode(value, { stream: true });
         setMessages((prevMessages) => {
@@ -55,7 +61,7 @@ function Chatbot() {
     setIsLoading(false);
   };
 
-  const handleKeyPress = (event) => {
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && !event.shiftKey) sendMessage();
   };
 
