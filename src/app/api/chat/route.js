@@ -4,7 +4,10 @@ import Groq from "groq-sdk";
 const systemPrompt =`You are HashBot, a AI assistant helping others that have questions about anything`;
 
 export async function POST(req) {
-    const groq = new Groq()
+    const groq = new Groq({
+        apiKey: process.env.GROQ_API_KEY,
+    });
+    
     const data = await req.json()
 
     const completion = await groq.chat.completions.create({
