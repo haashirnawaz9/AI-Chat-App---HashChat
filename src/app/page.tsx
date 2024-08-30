@@ -9,7 +9,7 @@ export default function Home() {
       <main className="w-full max-w-7xl bg-white py-12 rounded-md text-center shadow-lg mt-10">
         <div className="flex flex-col items-center max-w-screen-md mx-auto">
           <h1 className="text-4xl sm:text-5xl font-semibold mb-4 flex flex-row">
-          Discover smart, intuitive assistance tailored for you.
+          Discover Smart, Intuitive Assistance Tailored For You.
           </h1>
           <UserButton />
         </div>
